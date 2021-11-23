@@ -18,6 +18,13 @@ public class University {
         this.prefs = new ArrayList<>();
     }
 
+    public University(String name, int capacity) {
+        this.name = name;
+        this.assignments = new HashMap<>();
+        this.capacity = capacity;
+        this.prefs = new ArrayList<>();
+    }
+
     public boolean hasFreeSpace() {
         return assignments.size() < capacity;
     }
@@ -46,8 +53,9 @@ public class University {
         StringBuilder builder = new StringBuilder();
         for (Student stud :
                 prefs) {
-            builder.append(stud.name + " > ");
+            builder.append(stud.name).append(" > ");
         }
+        if(builder.length() > 2) builder.delete(builder.length() -2, builder.length() -1);
         return builder.toString();
     }
 

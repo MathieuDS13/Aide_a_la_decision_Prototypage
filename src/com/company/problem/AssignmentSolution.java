@@ -2,12 +2,12 @@ package com.company.problem;
 
 import java.util.*;
 
-public class AssignementSolution {
+public class AssignmentSolution {
     Map<Student, University> studAssignments;
     Map<University, List<Student>> univAssignements;
     List<Student> students;
     List<University> universities;
-    public AssignementSolution(List<Student> students, List<University> universities) {
+    public AssignmentSolution(List<Student> students, List<University> universities) {
         this.studAssignments = new HashMap<>();
         this.univAssignements = new HashMap<>();
         this.students = students;
@@ -32,9 +32,9 @@ public class AssignementSolution {
         for (Student student :
                 students) {
             if(student.assignment != null) {
-                builder.append("\n"+ student.name + " assigned to " + student.assignment.name + "; assignment rank " + student.getAssignmentRank());
+                builder.append("\n").append(student.name).append(" assigned to ").append(student.assignment.name).append("; assignment rank ").append(student.getAssignmentRank());
             } else {
-                builder.append("\n" + student.name + " assigned to NONE");
+                builder.append("\n").append(student.name).append(" assigned to NONE");
             }
         }
         return builder.toString();

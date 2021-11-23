@@ -2,20 +2,45 @@ package com.company.problem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
-public class AssignementProblem {
+public class AssignmentProblem {
     List<Student> students;
     List<University> universities;
     Random random = new Random();
 
-    private AssignementProblem() {
+    private AssignmentProblem() {
         this.students = new ArrayList<>();
         this.universities = new ArrayList<>();
     }
 
-    public static AssignementProblem createRandomProblem(int studCount, int univCount) {
-        AssignementProblem problem = new AssignementProblem();
+    public static AssignmentProblem createProblemFromVals(Map<String, Student> students, Map<String, University> universities, Map<String, List<String>> studsPrefs, Map<String, List<String>> univsPrefs) {
+        AssignmentProblem problem = new AssignmentProblem();
+        problem.students = new ArrayList<>(students.values());
+        problem.universities = new ArrayList<>(universities.values());
+        for (String stud :
+                studsPrefs.keySet()) {
+            Student currentStud = students.get(stud);
+            for (String pref :
+                    studsPrefs.get(stud)) {
+                currentStud.addPref(universities.get(pref));
+            }
+        }
+
+        for (String univ :
+                univsPrefs.keySet()) {
+            University currentUniv = universities.get(univ);
+            for (String pref :
+                    univsPrefs.get(univ)) {
+                currentUniv.addPref(students.get(pref));
+            }
+        }
+        return problem;
+    }
+
+    public static AssignmentProblem createRandomProblem(int studCount, int univCount) {
+        AssignmentProblem problem = new AssignmentProblem();
         problem.createStudents(studCount);
         problem.createUnivs(univCount);
         problem.createPrefAssociations();

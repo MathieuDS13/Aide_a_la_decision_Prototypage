@@ -1,7 +1,6 @@
 package com.company.views;
 
 import com.company.app.Kernel;
-import com.company.problem.AssignementSolution;
 
 import javax.swing.*;
 import java.awt.*;

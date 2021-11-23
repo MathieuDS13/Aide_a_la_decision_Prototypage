@@ -1,19 +1,18 @@
 package com.company.problem;
 
-import org.w3c.dom.stylesheets.LinkStyle;
-
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class StableMariageSolver {
-    AssignementProblem problem;
+    AssignmentProblem problem;
 
-    public StableMariageSolver(AssignementProblem problem) {
+    public StableMariageSolver(AssignmentProblem problem) {
         this.problem = problem;
     }
 
-    public AssignementSolution solveWithUnivPrefPriority() throws Exception {
+    public AssignmentSolution solveWithUnivPrefPriority() throws Exception {
+        clear();
         List<Student> input = new ArrayList<>(problem.students);
         debLog("\n\n\t/// SOLVING --> Priority : university preferences ///\n\n");
         while (!input.isEmpty()) {
@@ -50,7 +49,7 @@ public class StableMariageSolver {
             input.removeAll(removeToInput);
             input.addAll(addToInput);
         }
-        AssignementSolution solution = new AssignementSolution(problem.students, problem.universities);
+        AssignmentSolution solution = new AssignmentSolution(problem.students, problem.universities);
         for (Student student :
                 problem.students) {
             solution.addAssign(student, student.assignment);
@@ -66,5 +65,17 @@ public class StableMariageSolver {
 
     private void debLog(String str) {
         System.out.println(str);
+    }
+
+    private void clear() {
+        for (Student stud :
+                problem.students) {
+            stud.assignment = null;
+            stud.rank = 0;
+        }
+        for(University univ : problem.universities) {
+            univ.assignments = new HashMap<>();
+            //TODO modifier le rank la prochaine fois
+        }
     }
 }

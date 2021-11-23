@@ -1,18 +1,21 @@
 package com.company.app;
 
-import com.company.problem.AssignementProblem;
-import com.company.problem.AssignementSolution;
+import com.company.problem.AssignmentProblem;
+import com.company.problem.AssignmentProblemParser;
+import com.company.problem.AssignmentSolution;
 import com.company.problem.StableMariageSolver;
 import com.company.views.DataSetCreationWindow;
 import com.company.views.DatasetDisplayWindow;
 import com.company.views.ResultDisplayWindow;
 import com.company.views.MainWindow;
 
+import java.io.File;
+
 public class Kernel {
 
-    public AssignementProblem problem = null;
+    public AssignmentProblem problem = null;
     public StableMariageSolver solver = null;
-    public AssignementSolution solution = null;
+    public AssignmentSolution solution = null;
     MainWindow mainWindow;
 
     public void lauch() {
@@ -23,7 +26,7 @@ public class Kernel {
         new DataSetCreationWindow(this);
     }
 
-    public void setProblem(AssignementProblem problem) {
+    public void setProblem(AssignmentProblem problem) {
         this.problem = problem;
         this.solution = null;
         this.solver = null;
@@ -32,27 +35,27 @@ public class Kernel {
 
     public String getStudDatasetString() {
         StringBuilder builder = new StringBuilder();
-        if(problem != null) {
-            builder.append("Students : " + problem.getStudentsCount() + " students");
+        if (problem != null) {
+            builder.append("Students : ").append(problem.getStudentsCount()).append(" students");
         }
         return builder.toString();
     }
 
     public String getUnivDatasetString() {
         StringBuilder builder = new StringBuilder();
-        if(problem != null) {
-            builder.append("Universities : " + problem.getUnivsCount() + " universities");
+        if (problem != null) {
+            builder.append("Universities : ").append(problem.getUnivsCount()).append(" universities");
         }
         return builder.toString();
     }
 
     public void createRandomDataset(int studCount, int univCount) {
-        AssignementProblem newProblem = AssignementProblem.createRandomProblem(studCount, univCount);
+        AssignmentProblem newProblem = AssignmentProblem.createRandomProblem(studCount, univCount);
         setProblem(newProblem);
     }
 
     public void solve() {
-        if(problem != null){
+        if (problem != null) {
             this.solver = new StableMariageSolver(problem);
             try {
                 solution = solver.solveWithUnivPrefPriority();
@@ -60,15 +63,20 @@ public class Kernel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else return;
+        }
     }
 
     public void displaySolution() {
-        if(solution != null) new ResultDisplayWindow(solution);
+        if (solution != null) new ResultDisplayWindow(solution);
         //TODO implémenter l'affiche de la page de solution d'assignation
     }
 
     public void displayDataset() {
-        if(problem != null) new DatasetDisplayWindow(this);
+        if (problem != null) new DatasetDisplayWindow(this);
+    }
+
+    public void createProblemFromParsing(File file) throws Exception {
+        this.problem = AssignmentProblemParser.parse(file);
+        mainWindow.updateDatasetDisplay();
     }
 }

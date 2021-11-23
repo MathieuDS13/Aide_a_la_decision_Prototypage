@@ -31,6 +31,7 @@ public class Student {
                 prefs) {
             builder.append(univ.name + " > ");
         }
+        if(builder.length() > 2) builder.delete(builder.length() -2, builder.length() -1);
         return builder.toString();
     }
 

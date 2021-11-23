@@ -1,6 +1,6 @@
 package com.company.views;
 
-import com.company.problem.AssignementSolution;
+import com.company.problem.AssignmentSolution;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,10 +8,10 @@ import java.awt.*;
 public class ResultDisplayWindow extends JFrame {
     private JScrollPane scrollablePanel;
     private JPanel rootPanel;
-    AssignementSolution solution;
+    AssignmentSolution solution;
     JMultilineLabel resultBody = new JMultilineLabel("N/A");
 
-    public ResultDisplayWindow(AssignementSolution kernel) {
+    public ResultDisplayWindow(AssignmentSolution kernel) {
         this.solution = kernel;
         this.rootPanel = new JPanel();
         this.scrollablePanel = new JScrollPane(rootPanel);
