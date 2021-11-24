@@ -31,7 +31,7 @@ public class Student {
                 prefs) {
             builder.append(univ.name + " > ");
         }
-        if(builder.length() > 2) builder.delete(builder.length() -2, builder.length() -1);
+        if (builder.length() > 2) builder.delete(builder.length() - 2, builder.length() - 1);
         return builder.toString();
     }
 
@@ -58,11 +58,23 @@ public class Student {
         return prefs.indexOf(assignment);
     }
 
-    public void incrementRank(){
+    public void incrementRank() {
         rank++;
     }
 
     public int getCurrentRank() {
         return rank;
     }
+
+    public University getLowerPrefUniv(University other) throws Exception {
+        int otherIndex = prefs.indexOf(other);
+        int assignRank = getAssignmentRank();
+        if (otherIndex == -1) throw new Exception("Student.get LowerPrefStudent() : Prefs not in prefs list");
+        if (otherIndex < assignRank) {
+            return assignment;
+        }
+        return null;
+    }
+
+
 }

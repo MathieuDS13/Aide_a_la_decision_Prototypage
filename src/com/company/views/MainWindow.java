@@ -16,14 +16,15 @@ public class MainWindow extends JFrame {
     private JLabel studDataset;
     private JLabel univDataset;
     private JLabel errorLabel;
-    private Kernel kernel;
     private JButton displayDataset;
     private JFileChooser fileChooser;
+
+    private Kernel kernel;
 
     public MainWindow(Kernel kernel) {
         this.kernel = kernel;
         this.rootPanel = new JPanel();
-        this.fileChooser = new JFileChooser();
+        this.fileChooser = new JFileChooser(System.getProperty("user.dir"));
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         rootPanel.setLayout(new BoxLayout(rootPanel, BoxLayout.Y_AXIS));
         rootPanel.add(makeDatasetInfoPanel());
@@ -93,9 +94,7 @@ public class MainWindow extends JFrame {
                     if (returnVal == JFileChooser.APPROVE_OPTION) {
                         errorLabel.setVisible(false);
                         File file = fileChooser.getSelectedFile();
-                        System.out.println("Chosen File " + file.getName());
                         kernel.createProblemFromParsing(file);
-                        //TODO afficher le sélecteur de fichier
                     } else if (returnVal == JFileChooser.CANCEL_OPTION) {
                         return;
                     } else {

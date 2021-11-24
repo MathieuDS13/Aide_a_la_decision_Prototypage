@@ -73,9 +73,61 @@ public class StableMariageSolver {
             stud.assignment = null;
             stud.rank = 0;
         }
-        for(University univ : problem.universities) {
+        for (University univ : problem.universities) {
             univ.assignments = new HashMap<>();
-            //TODO modifier le rank la prochaine fois
+            univ.rank = 0;
+            //TODO modifier le rank si généralisation et apparition de rank côté université
         }
+    }
+
+
+    public AssignmentSolution solveWithStudPrefPriority() throws Exception {
+        clear();
+        List<University> input = new ArrayList<>(problem.universities);
+        debLog("\n\n\t/// SOLVING --> Priority : students preferences ///\n\n");
+        while (!input.isEmpty()) {
+            List<University> removeToInput = new ArrayList<>();
+            List<University> addToInput = new ArrayList<>();
+            for (int i = 0, inputSize = input.size(); i < inputSize; i++) {
+                University univ = input.get(i);
+                debLog("Treating university " + univ.name);
+                if (!univ.hasFreeSpace() || univ.getCurrentRank() >= univ.prefs.size()) {
+                    removeToInput.add(univ);
+                    continue;
+                }
+                Student wish = univ.getPref(univ.getCurrentRank());
+                debLog("\tWhish n°" + univ.getCurrentRank() + " -> " + wish.name);
+                if (wish.assignment == null) {
+                    debLog("\tWhish " + wish.name + " has no assignment");
+                    debLog("\tAssigning " + wish.name + " to " + univ.name);
+                    addAssignementLink(wish, univ);
+                } else {
+                    debLog("\tWhish " + wish.name + " has ALREADY an assignment");
+                    University deleted = wish.getLowerPrefUniv(univ);
+                    if (deleted != null) {
+                        debLog("\tDeleting " + deleted.name + " from " + wish.name + " assignments to benefit " + univ.name);
+                        deleted.incrementRank();
+                        addToInput.add(deleted);
+                        wish.assignment = null;
+                        deleted.removeAssignment(wish);
+                        debLog("\tAdding " + univ.name + " to " + wish.name + " assignments");
+                        addAssignementLink(wish, univ);
+                    } else {
+                        debLog("\t" + univ.name + " is not prefered to any universite assigned to " + wish.name);
+                        univ.incrementRank();
+                        addToInput.add(univ);
+                    }
+                }
+            }
+            input.removeAll(removeToInput);
+            input.addAll(addToInput);
+        }
+        AssignmentSolution solution = new AssignmentSolution(problem.students, problem.universities);
+        for (Student student :
+                problem.students) {
+            solution.addAssign(student, student.assignment);
+        }
+        solution.log();
+        return solution;
     }
 }

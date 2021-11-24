@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class University {
+    public int rank;
     String name;
     Map<String, Student> assignments;
     int capacity;
@@ -16,6 +17,7 @@ public class University {
         this.assignments = new HashMap<>();
         this.capacity = 1;
         this.prefs = new ArrayList<>();
+        this.rank = 0;
     }
 
     public University(String name, int capacity) {
@@ -23,6 +25,7 @@ public class University {
         this.assignments = new HashMap<>();
         this.capacity = capacity;
         this.prefs = new ArrayList<>();
+        this.rank = 0;
     }
 
     public boolean hasFreeSpace() {
@@ -76,6 +79,14 @@ public class University {
         return ret;
     }
 
+    public void incrementRank(){
+        rank++;
+    }
+
+    public int getCurrentRank() {
+        return rank;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,5 +100,13 @@ public class University {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    public Student getPref(int rank) {
+        return prefs.get(rank);
+    }
+
+    public int getRank(Student assignment) {
+        return prefs.indexOf(assignment);
     }
 }

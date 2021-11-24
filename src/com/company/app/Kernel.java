@@ -58,7 +58,9 @@ public class Kernel {
         if (problem != null) {
             this.solver = new StableMariageSolver(problem);
             try {
-                solution = solver.solveWithUnivPrefPriority();
+                //solution = solver.solveWithUnivPrefPriority();
+                //TODO changer ici le bon appel
+                solution = solver.solveWithStudPrefPriority();
                 displaySolution();
             } catch (Exception e) {
                 e.printStackTrace();
