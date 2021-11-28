@@ -11,6 +11,9 @@ import com.company.views.MainWindow;
 
 import java.io.File;
 
+/**
+ * Une classe qui contient les éléments pour une session de lancement de l'application.
+ */
 public class Kernel {
 
     public AssignmentProblem problem = null;
@@ -81,4 +84,6 @@ public class Kernel {
         this.problem = AssignmentProblemParser.parse(file);
         mainWindow.updateDatasetDisplay();
     }
+
+
 }

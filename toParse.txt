@@ -1,11 +1,11 @@
 $etu_1
-univ_2>univ_1
+univ_1>univ_2
 $etu_2
 univ_2>univ_1
 $etu_3
 univ_2>univ_1
 &
-$univ_1;3
+$univ_1;1
 etu_2>etu_1>etu_3
-$univ_2;3
+$univ_2;1
 etu_2>etu_1>etu_3

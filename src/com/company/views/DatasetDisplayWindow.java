@@ -5,6 +5,9 @@ import com.company.app.Kernel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Classe représentant l'affichage des données du dataset.
+ */
 public class DatasetDisplayWindow extends JFrame {
 
     private JScrollPane scrollablePanel;

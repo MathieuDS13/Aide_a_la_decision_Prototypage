@@ -8,15 +8,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/**
+ * La classe représentant la page principale de l'application.
+ */
 public class MainWindow extends JFrame {
     private JPanel rootPanel;
     private JButton createRandomDatasetButton;
     private JButton solveAndDisplayButton;
     private JButton parseButton;
+    private JButton displayDataset;
+    private JButton displayComparaison;
     private JLabel studDataset;
     private JLabel univDataset;
     private JLabel errorLabel;
-    private JButton displayDataset;
     private JFileChooser fileChooser;
 
     private Kernel kernel;
@@ -33,10 +37,19 @@ public class MainWindow extends JFrame {
         rootPanel.add(makeParseFromFileButton());
         rootPanel.add(makeDisplayDatasetButton());
         rootPanel.add(makeSolveAndDisplayButton());
+        rootPanel.add(makeCompButton());
 
         start();
     }
 
+    private JButton makeCompButton() {
+        this.displayComparaison = new JButton("Display algo comp");
+        displayComparaison.setVisible(false);
+        displayComparaison.addActionListener(e -> {
+            new ResultCompWindow(kernel);
+        });
+        return displayComparaison;
+    }
 
     private JPanel makeDatasetInfoPanel() {
         JPanel pan = new JPanel();
@@ -80,7 +93,6 @@ public class MainWindow extends JFrame {
         errorLabel.setForeground(Color.red);
         errorLabel.setVisible(false);
         return errorLabel;
-        //TODO
     }
 
     private JButton makeParseFromFileButton() {
@@ -130,9 +142,12 @@ public class MainWindow extends JFrame {
         if (kernel.problem != null) {
             displayDataset.setVisible(true);
             solveAndDisplayButton.setVisible(true);
+            displayComparaison.setVisible(true);
         } else {
             displayDataset.setVisible(false);
             solveAndDisplayButton.setVisible(false);
+            displayComparaison.setVisible(false);
+
         }
     }
 }

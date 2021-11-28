@@ -3,6 +3,9 @@ package com.company.views;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Une classe utilitaire qui est un label sur plusieurs lignes.
+ */
 public class JMultilineLabel extends JTextArea {
     private static final long serialVersionUID = 1L;
     public JMultilineLabel(String text){

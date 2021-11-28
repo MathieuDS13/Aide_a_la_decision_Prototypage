@@ -5,6 +5,9 @@ import com.company.problem.AssignmentSolution;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * La classe qui représente la page d'affichage des résultats de l'exécution de l'algorithme de mariage stable.
+ */
 public class ResultDisplayWindow extends JFrame {
     private JScrollPane scrollablePanel;
     private JPanel rootPanel;

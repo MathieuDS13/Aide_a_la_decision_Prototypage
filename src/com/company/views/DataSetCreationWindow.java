@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 
+/**
+ * Classe réprésentant la page de création d'un dataset
+ */
 public class DataSetCreationWindow extends JFrame {
     JPanel rootPanel;
     Kernel kernel;

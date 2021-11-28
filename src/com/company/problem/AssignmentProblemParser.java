@@ -9,14 +9,45 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Cette classe permet de lire un format de fichier particulier représentant un problème d'affectation
+ * et les différentes parties du problème (étudiants et leurs préférences ainsi que les universités avec leur capacités
+ * et leurs préférences)
+ *
+ * Le format doit être le suivant :
+ *
+ * $NOM_DE_L'ETUDIANT
+ * nom de la préférence de rang 0 > nom de la préférence suivante > nom de la préférence suivante > ...
+ * $NOM_DE_L'ETUDIANT_SUIVANT
+ * nom de la préférence de rang 0 > nom de la préférence suivante > nom de la préférence suivante > ...
+ * &
+ * $NOM_DE_L'UNIVERSITE;CAPACITE
+ * nom de la préférence de rang 0 > nom de la préférence suivante > nom de la préférence suivante > ...
+ *
+ * Dans les préférences les noms doivent faire référence aux noms des universités pour les étudiants
+ * et inversement pour les universités.
+ * $NOM réprésente le symbole $ suivi du nom de l'étudiant (sans espace).
+ * le signe & indique le passage à l'autre partie, donc les universités.
+ * Pour les universités il est important de préciser sa capacité en suivant son nom du symbole ; et de la valeur de
+ * la capacité accolée.
+ * Attention il est important de commencer par les étudiants puis de faire les universités
+ */
+
 public class AssignmentProblemParser {
 
+    /**
+     * La fonction qui permet de lire le fichier passé en paramètre et d'en extraire un problème
+     * d'affectation qui est retourné.
+     *
+     * @param file
+     * @return
+     * @throws Exception
+     */
     public static AssignmentProblem parse(File file) throws Exception {
         Map<String, University> universityMap = new HashMap<>();
         Map<String, Student> studentMap = new HashMap<>();
         Map<String, List<String>> studentsPrefs = new HashMap<>();
         Map<String, List<String>> univsPrefs = new HashMap<>();
-        //TODO implémenter le parseur
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line = reader.readLine();
         Student currentStud = null;
