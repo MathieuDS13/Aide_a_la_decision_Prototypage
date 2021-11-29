@@ -15,6 +15,6 @@ public class Main {
         AssignmentProblem problem = AssignmentProblem.createRandomProblem(20, 3);
         problem.log();
         StableMariageSolver solver = new StableMariageSolver(problem);
-        AssignmentSolution solution = solver.solveWithUnivPrefPriority();
+        AssignmentSolution solution = solver.solveWithStudentPriority();
     }
 }

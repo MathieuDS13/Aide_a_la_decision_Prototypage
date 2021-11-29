@@ -29,7 +29,7 @@ public class StableMariageSolver {
      * @return une solution au problème
      * @throws Exception
      */
-    public AssignmentSolution solveWithUnivPrefPriority() throws Exception {
+    public AssignmentSolution solveWithStudentPriority() throws Exception {
         clear();
         List<Student> input = new ArrayList<>(problem.students);
         debLog("\n\n\t/// SOLVING --> Priority : university preferences ///\n\n");
@@ -126,7 +126,7 @@ public class StableMariageSolver {
      * @return une solution au problème
      * @throws Exception
      */
-    public AssignmentSolution solveWithStudPrefPriority() throws Exception {
+    public AssignmentSolution solveWithUniversityPriority() throws Exception {
         clear();
         List<University> input = new ArrayList<>(problem.universities);
         debLog("\n\n\t/// SOLVING --> Priority : students preferences ///\n\n");

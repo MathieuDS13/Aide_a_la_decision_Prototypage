@@ -63,7 +63,7 @@ public class Kernel {
             try {
                 //solution = solver.solveWithUnivPrefPriority();
                 //TODO changer ici le bon appel
-                solution = solver.solveWithStudPrefPriority();
+                solution = solver.solveWithUniversityPriority();
                 displaySolution();
             } catch (Exception e) {
                 e.printStackTrace();

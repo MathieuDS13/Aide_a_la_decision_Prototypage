@@ -5,7 +5,6 @@ import com.company.problem.AssignmentSolution;
 import com.company.problem.StableMariageSolver;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ResultCompWindow extends JFrame {
     JPanel root;
@@ -40,7 +39,7 @@ public class ResultCompWindow extends JFrame {
 
         StableMariageSolver solver = new StableMariageSolver(kernel.problem);
         try {
-            AssignmentSolution solution = solver.solveWithStudPrefPriority();
+            AssignmentSolution solution = solver.solveWithStudentPriority();
             body.append("\nTotal Students satisfaction :");
             body.append("\n" + solution.computeStudentsSatisfStat());
 
@@ -74,7 +73,7 @@ public class ResultCompWindow extends JFrame {
 
         StableMariageSolver solver = new StableMariageSolver(kernel.problem);
         try {
-            AssignmentSolution solution = solver.solveWithUnivPrefPriority();
+            AssignmentSolution solution = solver.solveWithUniversityPriority();
             body.append("\nTotal Students satisfaction :");
             body.append("\n" + solution.computeStudentsSatisfStat());
 
