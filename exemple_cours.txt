@@ -1,0 +1,13 @@
+$etu_1
+univ_2>univ_1>univ_3
+$etu_2
+univ_1>univ_2>univ_3
+$etu_3
+univ_1>univ_2>univ_3
+&
+$univ_1;1
+etu_1>etu_3>etu_2
+$univ_2;1
+etu_2>etu_1>etu_3
+$univ_3;1
+etu_2>etu_1>etu_3
