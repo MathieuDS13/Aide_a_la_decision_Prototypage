@@ -114,7 +114,6 @@ public class StableMariageSolver {
         for (University univ : problem.universities) {
             univ.assignments = new HashMap<>();
             univ.rank = 0;
-            //TODO modifier le rank si généralisation et apparition de rank côté université
         }
     }
 

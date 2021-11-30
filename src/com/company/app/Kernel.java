@@ -62,7 +62,6 @@ public class Kernel {
             this.solver = new StableMariageSolver(problem);
             try {
                 //solution = solver.solveWithUnivPrefPriority();
-                //TODO changer ici le bon appel
                 solution = solver.solveWithUniversityPriority();
                 displaySolution();
             } catch (Exception e) {
@@ -73,7 +72,6 @@ public class Kernel {
 
     public void displaySolution() {
         if (solution != null) new ResultDisplayWindow(solution);
-        //TODO implémenter l'affiche de la page de solution d'assignation
     }
 
     public void displayDataset() {
